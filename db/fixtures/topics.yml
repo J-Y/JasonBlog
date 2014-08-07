@@ -1,0 +1,19 @@
+one:
+  title: TestSample
+  node_id: 1
+  body: TestSample
+  user_id: 1
+  replies_count: 1
+  last_reply_user_id: 1
+  replied_at: 2014-08-07 18:11:11
+  source: SourceSample
+
+two:
+  title: TestSample1
+  node_id: 1
+  body: TestSample1
+  user_id: 1
+  replies_count: 1
+  last_reply_user_id: 1
+  replied_at: 2014-08-07 18:21:11
+  source: SourceSample1
