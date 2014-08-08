@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140807078637) do
+ActiveRecord::Schema.define(version: 20140808078637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "counters", force: true do |t|
-    t.string  "key",      null: false
-    t.integer "value_id", null: false
+    t.string "key",   null: false
+    t.string "value", null: false
   end
 
   add_index "counters", ["key"], name: "index_counters_on_key", using: :btree
