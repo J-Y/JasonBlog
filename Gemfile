@@ -4,8 +4,7 @@ source 'https://ruby.taobao.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'
 # Use jdbcsqlite3 as the database for Active Record
-gem 'activerecord-jdbcsqlite3-adapter'
-gem 'activerecord-jdbcpostgresql-adapter', '1.3.3'
+gem 'paperclip', :git => 'https://github.com/thoughtbot/paperclip.git'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
