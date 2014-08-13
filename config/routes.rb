@@ -1,14 +1,13 @@
 Rails.application.routes.draw do
-  resources :topics
 
-  resources :sections
-
-  resources :replies
-
-  resources :nodes
-
-  resources :users
-
+  namespace :cpanel do
+    root :controller => :home, :action => :index
+    resources :topics
+    resources :sections
+    resources :replies
+    resources :nodes
+    resources :users
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

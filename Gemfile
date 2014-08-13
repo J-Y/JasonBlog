@@ -5,9 +5,9 @@ source 'https://ruby.taobao.org'
 gem 'rails', '4.1.1'
 # Use jdbcsqlite3 as the database for Active Record
 #gem 'activerecord-jdbcsqlite3-adapter'
-gem 'pg'
 #gem 'activerecord-jdbcpostgresql-adapter', '1.3.3'
-#gem 'postgres', '~> 0.8.1'
+gem 'paperclip', :git => 'https://github.com/thoughtbot/paperclip.git'
+gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
