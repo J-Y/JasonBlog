@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
+  root :to => "home#index"
   namespace :cpanel do
-    root :controller => :home, :action => :index
+    root :to => "home#index"
     resources :topics
     resources :sections
     resources :replies

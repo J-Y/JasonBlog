@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>JasonBlog</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <title><%= @page_title %><%= APP_CONFIG['app_name'] %></title>
+  <%= stylesheet_link_tag "application","front", :cache => "cached_front" %>
+  <%= yield :styles %>
+
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+ <div id="header">
+    <div class="container">
+    </div>
+  </div>
+  <div id="main">
+    <%= yield %>
+  </div>
+  <div id="footer">
+  </div>
+
 
 </body>
 </html>

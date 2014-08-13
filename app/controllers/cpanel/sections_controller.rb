@@ -1,74 +1,83 @@
 class Cpanel::SectionsController < Cpanel::ApplicationController
-  before_action :set_section, only: [:show, :edit, :update, :destroy]
-
   # GET /sections
-  # GET /sections.json
+  # GET /sections.xml
   def index
     @sections = Section.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @sections }
+    end
   end
 
   # GET /sections/1
-  # GET /sections/1.json
+  # GET /sections/1.xml
   def show
+    @section = Section.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @section }
+    end
   end
 
   # GET /sections/new
+  # GET /sections/new.xml
   def new
     @section = Section.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @section }
+    end
   end
 
   # GET /sections/1/edit
   def edit
+    @section = Section.find(params[:id])
   end
 
   # POST /sections
-  # POST /sections.json
+  # POST /sections.xml
   def create
-    @section = Section.new(section_params)
+    @section = Section.new(params[:section])
 
     respond_to do |format|
       if @section.save
-        format.html { redirect_to @section, notice: 'Section was successfully created.' }
-        format.json { render :show, status: :created, location: @section }
+        format.html { redirect_to(cpanel_sections_path, :notice => 'Section was successfully created.') }
+        format.xml  { render :xml => @section, :status => :created, :location => @section }
       else
-        format.html { render :new }
-        format.json { render json: @section.errors, status: :unprocessable_entity }
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @section.errors, :status => :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /sections/1
-  # PATCH/PUT /sections/1.json
+  # PUT /sections/1
+  # PUT /sections/1.xml
   def update
+    @section = Section.find(params[:id])
+
     respond_to do |format|
-      if @section.update(section_params)
-        format.html { redirect_to @section, notice: 'Section was successfully updated.' }
-        format.json { render :show, status: :ok, location: @section }
+      if @section.update_attributes(params[:section])
+        format.html { redirect_to(cpanel_sections_path, :notice => 'Section was successfully updated.') }
+        format.xml  { head :ok }
       else
-        format.html { render :edit }
-        format.json { render json: @section.errors, status: :unprocessable_entity }
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @section.errors, :status => :unprocessable_entity }
       end
     end
   end
 
   # DELETE /sections/1
-  # DELETE /sections/1.json
+  # DELETE /sections/1.xml
   def destroy
+    @section = Section.find(params[:id])
     @section.destroy
+
     respond_to do |format|
-      format.html { redirect_to sections_url, notice: 'Section was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to(cpanel_sections_path) }
+      format.xml  { head :ok }
     end
   end
-
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_section
-      @section = Section.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def section_params
-      params.require(:section).permit(:name, :sort)
-    end
 end

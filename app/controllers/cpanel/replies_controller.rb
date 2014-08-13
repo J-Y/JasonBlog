@@ -1,74 +1,83 @@
 class Cpanel::RepliesController < Cpanel::ApplicationController
-  before_action :set_reply, only: [:show, :edit, :update, :destroy]
-
   # GET /replies
-  # GET /replies.json
+  # GET /replies.xml
   def index
-    @replies = Reply.all
+    @replies = Reply.includes(:topic, :user)
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @replies }
+    end
   end
 
   # GET /replies/1
-  # GET /replies/1.json
+  # GET /replies/1.xml
   def show
+    @reply = Reply.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @reply }
+    end
   end
 
   # GET /replies/new
+  # GET /replies/new.xml
   def new
     @reply = Reply.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @reply }
+    end
   end
 
   # GET /replies/1/edit
   def edit
+    @reply = Reply.find(params[:id])
   end
 
   # POST /replies
-  # POST /replies.json
+  # POST /replies.xml
   def create
-    @reply = Reply.new(reply_params)
+    @reply = Reply.new(params[:reply])
 
     respond_to do |format|
       if @reply.save
-        format.html { redirect_to @reply, notice: 'Reply was successfully created.' }
-        format.json { render :show, status: :created, location: @reply }
+        format.html { redirect_to(cpanel_replies_path, :notice => 'Reply was successfully created.') }
+        format.xml  { render :xml => @reply, :status => :created, :location => @reply }
       else
-        format.html { render :new }
-        format.json { render json: @reply.errors, status: :unprocessable_entity }
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @reply.errors, :status => :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /replies/1
-  # PATCH/PUT /replies/1.json
+  # PUT /replies/1
+  # PUT /replies/1.xml
   def update
+    @reply = Reply.find(params[:id])
+
     respond_to do |format|
-      if @reply.update(reply_params)
-        format.html { redirect_to @reply, notice: 'Reply was successfully updated.' }
-        format.json { render :show, status: :ok, location: @reply }
+      if @reply.update_attributes(params[:reply])
+        format.html { redirect_to(cpanel_replies_path, :notice => 'Reply was successfully updated.') }
+        format.xml  { head :ok }
       else
-        format.html { render :edit }
-        format.json { render json: @reply.errors, status: :unprocessable_entity }
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @reply.errors, :status => :unprocessable_entity }
       end
     end
   end
 
   # DELETE /replies/1
-  # DELETE /replies/1.json
+  # DELETE /replies/1.xml
   def destroy
+    @reply = Reply.find(params[:id])
     @reply.destroy
+
     respond_to do |format|
-      format.html { redirect_to replies_url, notice: 'Reply was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to(cpanel_replies_path) }
+      format.xml  { head :ok }
     end
   end
-
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_reply
-      @reply = Reply.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def reply_params
-      params.require(:reply).permit(:body, :state, :source)
-    end
 end
