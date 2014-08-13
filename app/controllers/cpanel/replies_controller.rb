@@ -1,4 +1,4 @@
-class RepliesController < ApplicationController
+class Cpanel::RepliesController < Cpanel::ApplicationController
   before_action :set_reply, only: [:show, :edit, :update, :destroy]
 
   # GET /replies

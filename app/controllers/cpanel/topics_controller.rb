@@ -1,4 +1,4 @@
-class TopicsController < ApplicationController
+class Cpanel::TopicsController < Cpanel::ApplicationController
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
 
   # GET /topics

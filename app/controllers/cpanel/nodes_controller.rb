@@ -1,4 +1,4 @@
-class NodesController < ApplicationController
+class Cpanel::NodesController < Cpanel::ApplicationController
   before_action :set_node, only: [:show, :edit, :update, :destroy]
 
   # GET /nodes
