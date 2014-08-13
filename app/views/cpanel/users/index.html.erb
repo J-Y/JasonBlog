@@ -4,7 +4,6 @@
   <thead>
     <tr>
       <th>Email</th>
-      <th>Password</th>
       <th>Name</th>
       <th>Location</th>
       <th>Bio</th>
@@ -22,7 +21,6 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= user.email %></td>
-        <td><%= user.password %></td>
         <td><%= user.name %></td>
         <td><%= user.location %></td>
         <td><%= user.bio %></td>
@@ -40,5 +38,5 @@
 </table>
 
 <br>
-
+<%=APP_CONFIG['upload_root']%>
 <%= link_to 'New User', new_cpanel_user_path %>
