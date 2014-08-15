@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
+   acts_as_authentic
   validates_presence_of :email, :name, :passwd
   validates_uniqueness_of :email, :name
+  validates_format_of :email,  :with => /\A[\w+\-.']+@[a-z\d\-.]+\.[a-z]+\z/i
   has_many :topics
   has_many :replies
 
@@ -20,5 +22,8 @@ class User < ActiveRecord::Base
       #屏蔽
       :blocked => 2
   }
+
+  #Accessors
+  # attr_accessible :email, :password, :name, :location, :bio, :website, :avatar_file_name, :verified, :state, :qq, :last_logined_at, :tagline
 
 end

@@ -23,6 +23,7 @@ module JasonBlog
     config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = "zh-CN"
     config.encoding = "utf-8"
-    config.filter_parameters += [:passwd]
+    config.filter_parameters += [:password,:password_confirm]
+
   end
 end

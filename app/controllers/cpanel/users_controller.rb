@@ -1,4 +1,6 @@
 class Cpanel::UsersController < Cpanel::ApplicationController
+
+
   # GET /users
   # GET /users.xml
   def index

@@ -70,20 +70,28 @@ ActiveRecord::Schema.define(version: 20140907070756) do
   add_index "topics", ["user_id"], name: "index_topics_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "email",                        null: false
-    t.string   "password",                     null: false
-    t.string   "name",                         null: false
+    t.string   "email",                            null: false
+    t.string   "name",                             null: false
     t.string   "location"
     t.string   "bio"
     t.string   "website"
     t.string   "avatar_file_name"
-    t.integer  "state",            default: 1, null: false
+    t.integer  "state",               default: 1,  null: false
     t.string   "qq"
-    t.datetime "last_logined_at"
     t.string   "tagline"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "verified"
+    t.string   "crypted_password",    default: "", null: false
+    t.string   "password_salt",       default: "", null: false
+    t.string   "persistence_token",   default: "", null: false
+    t.string   "single_access_token", default: "", null: false
+    t.string   "perishable_token",    default: "", null: false
+    t.integer  "login_count",         default: 0,  null: false
+    t.integer  "failed_login_count",  default: 0,  null: false
+    t.datetime "last_login_at"
+    t.string   "current_login_ip"
+    t.string   "last_login_ip"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree

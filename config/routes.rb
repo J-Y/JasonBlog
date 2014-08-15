@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
 
   root :to => "home#index"
+
+  get "login", :to => 'home#login'
+  post "login_create", :to => 'home#login_create'
+  post 'logout', :to => 'home#logout'
+  get 'register', :to => 'users#new'
+  resources :users
+
   namespace :cpanel do
     root :to => "home#index"
     resources :topics
