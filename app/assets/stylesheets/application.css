@@ -18,7 +18,7 @@ body { text-align:center;
   padding-bottom:30px;
 }
 
-.box { background:#FFF; padding:20px;
+.box { background:#FFF; padding:10px;
     margin-bottom:20px;
     *border:1px solid #EEE;
     -moz-border-radius: 8px;
@@ -31,6 +31,9 @@ body { text-align:center;
 div.field, div.actions {
   margin-bottom: 10px;
 }
+
+.leftbox { width:700px; float:left; }
+.sidebar { width:240px; float:right; }s
 
 
 .field_with_errors {
@@ -61,6 +64,7 @@ div.field, div.actions {
 }
 #success_message { border:1px solid #d4e5a6; background:#effbd5; padding:6px 10px; width:550px; margin-bottom:15px; }
 
+#header .container {  width:940px; }
 #header { margin-bottom:20px; line-height:40px; height:40px; color:#EEE;
   background:#36aa01 url(/images/header_bg.jpg) left top repeat-x; }
 #header table { width:100%;  }
@@ -68,12 +72,14 @@ div.field, div.actions {
 #header a { color:#FFF; }
 #app_name { font-size:18px; font-weight:bold; }
 #app_name em { font-size:0.5em; font-weight:normal; color:#e7e5b2;}
-#app_name a { font-size:12px; font-weight:normal; }
+#app_name a { text-decoration: none;}
+#app_name a.out { font-size:12px; font-weight:normal; text-decoration: underline; }
 #navbar a { font-size:14px; font-weight:bold; margin-right:8px; }
 #navbar a.actived { color:#e7e5b2; text-decoration:none; cursor:default; }
 #userbar { text-align:right; }
-#sitemap { margin-bottom:6px; font-family:sans-serif,arial; }
+#sitemap { margin-bottom:6px; font-family:sans-serif,arial; width:940px; }
 #main h1 { font-size:16px; font-weight:bold; text-align:right; color:#ed5140; margin-bottom:10px; }
+#footer { clear:both; }
 table.grid { border:1px solid #e7e5b2; }
 table.grid tr td {border-top: 1px solid #e7e5b2; border-left: 1px solid #e7e5b2; padding:3px;}
 table.grid tr td.first { border-left: 0px;}

@@ -1,5 +1,12 @@
-<h1>New topic</h1>
+<% content_for :sitemap do %>
+  <a href="<%= topics_path %>">社区论坛</a> &gt; <span class="current">新建贴子</span>
+<% end %>
+<div class="leftbox">
+	<div class="box">
+<h1>新建贴子</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', topics_path %>
+	</div>
+</div>
+<%= render 'sidebar' %>

@@ -1,35 +1,31 @@
-<h1>Listing topics</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Body</th>
-      <th>Replies count</th>
-      <th>Last reply user</th>
-      <th>Replied at</th>
-      <th>Source</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @topics.each do |topic| %>
-      <tr>
-        <td><%= topic.title %></td>
-        <td><%= topic.body %></td>
-        <td><%= topic.replies_count %></td>
-        <td><%= topic.last_reply_user_id %></td>
-        <td><%= topic.replied_at %></td>
-        <td><%= topic.source %></td>
-        <td><%= link_to 'Show', topic %></td>
-        <td><%= link_to 'Edit', edit_topic_path(topic) %></td>
-        <td><%= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Topic', new_topic_path %>
+<% content_for :sitemap do %>
+  <a href="<%= topics_path %>">社区论坛</a> &gt; <span class="current">最近活跃的帖子</span>
+<% end %>
+<div class="leftbox">
+	<div class="box">
+		<h1>最近活跃的帖子</h1>
+		<table class="topics">
+		<% @topics.each do |topic| %>
+	  <tr class="topic">
+	    <td class="avatar">
+				<%= image_tag(topic.user.avatar(:normal)) %>
+			</td>
+	    <td>
+				<p class="title"><a href="<%= topic_path(topic) %>" title="<%= topic.title %>"><%= truncate(topic.title, :length => 100) %></p>
+				<p class="leader">
+					由 <a href="<%= user_path(topic.user_id) %>"><%= topic.user.name %></a> 在 <%= topic.node.name %> 中发起
+				</p>
+				<p class="time">
+					<% if topic.last_reply_user.blank? %>
+						发布于<%= time_ago_in_words(topic.created_at) %>
+					<% else %>
+						最后由 <a href="<%= user_path(topic.last_reply_user_id) %>"><%= topic.last_reply_user.name %></a> 回复于 <%= time_ago_in_words(topic.replied_at) %>
+					<% end %>
+				</p>
+			</td>
+	  </tr>
+		<% end %>
+		</table>
+	</div>
+</div>
+<%= render 'sidebar' %>

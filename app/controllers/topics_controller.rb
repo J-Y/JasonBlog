@@ -1,74 +1,58 @@
 class TopicsController < ApplicationController
-  before_action :set_topic, only: [:show, :edit, :update, :destroy]
-
+  before_filter :require_user, :only => [:new,:edit,:create,:update,:destroy]
   # GET /topics
-  # GET /topics.json
+  # GET /topics.xml
   def index
-    @topics = Topic.all
+    @topics = Topic.includes(:node,:user,:last_reply_user)
   end
 
   # GET /topics/1
-  # GET /topics/1.json
+  # GET /topics/1.xml
   def show
+    @topic = Topic.find(params[:id])
   end
 
   # GET /topics/new
+  # GET /topics/new.xml
   def new
     @topic = Topic.new
   end
 
   # GET /topics/1/edit
   def edit
+    @topic = Topic.find(params[:id])
   end
 
   # POST /topics
-  # POST /topics.json
+  # POST /topics.xml
   def create
-    @topic = Topic.new(topic_params)
+    @topic = Topic.new(params.require(:topic).permit(:title, :node_id, :body))
+    @topic.user_id = @current_user.id
 
-    respond_to do |format|
-      if @topic.save
-        format.html { redirect_to @topic, notice: 'Topic was successfully created.' }
-        format.json { render :show, status: :created, location: @topic }
-      else
-        format.html { render :new }
-        format.json { render json: @topic.errors, status: :unprocessable_entity }
-      end
+    if @topic.save
+      redirect_to(topics_path, :notice => '帖子创建成功.')
+    else
+      render :action => "new"
     end
   end
 
-  # PATCH/PUT /topics/1
-  # PATCH/PUT /topics/1.json
+  # PUT /topics/1
+  # PUT /topics/1.xml
   def update
-    respond_to do |format|
-      if @topic.update(topic_params)
-        format.html { redirect_to @topic, notice: 'Topic was successfully updated.' }
-        format.json { render :show, status: :ok, location: @topic }
-      else
-        format.html { render :edit }
-        format.json { render json: @topic.errors, status: :unprocessable_entity }
-      end
+    @topic = Topic.find(params[:id])
+
+    if @topic.update_attributes(params[:topic])
+      redirect_to(topics_path, :notice => '帖子修改成功.')
+    else
+      render :action => "edit"
     end
   end
 
   # DELETE /topics/1
-  # DELETE /topics/1.json
+  # DELETE /topics/1.xml
   def destroy
+    @topic = Topic.find(params[:id])
     @topic.destroy
-    respond_to do |format|
-      format.html { redirect_to topics_url, notice: 'Topic was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+  redirect_to(topics_path, :notice => '帖子删除成功.')
   end
-
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_topic
-      @topic = Topic.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def topic_params
-      params.require(:topic).permit(:title, :body, :replies_count, :last_reply_user_id, :replied_at, :source)
-    end
 end

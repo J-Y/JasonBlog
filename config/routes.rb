@@ -4,9 +4,10 @@ Rails.application.routes.draw do
 
   get "login", :to => 'home#login'
   post "login_create", :to => 'home#login_create'
-  post 'logout', :to => 'home#logout'
+  get 'logout', :to => 'home#logout'
   get 'register', :to => 'users#new'
   resources :users
+  resources :topics
 
   namespace :cpanel do
     root :to => "home#index"

@@ -1,6 +1,12 @@
-<h1>Editing topic</h1>
+<% content_for :sitemap do %>
+  <a href="<%= topics_path %>">社区论坛</a> &gt; <span class="current">修改</span>
+<% end %>
+<div class="leftbox">
+	<div class="box">
+<h1>修改贴子</h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @topic %> |
-<%= link_to 'Back', topics_path %>
+	</div>
+</div>
+<%= render 'sidebar' %>

@@ -7,8 +7,6 @@ class HomeController < ApplicationController
 
   def login
     @user_session = UserSession.new
-    p @user_session
-    p 'qqqqqqqqqqq'
   end
 
   def login_create
