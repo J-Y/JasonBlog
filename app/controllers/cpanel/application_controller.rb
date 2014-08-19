@@ -1,3 +1,4 @@
+#encoding: utf-8
 class Cpanel::ApplicationController < ApplicationController
   layout "cpanel"
   before_filter :require_user

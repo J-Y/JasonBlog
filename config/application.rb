@@ -1,3 +1,4 @@
+#encoding: utf-8
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
@@ -19,7 +20,7 @@ module JasonBlog
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     config.assets.enable =true
     config.assets.version = '1.0'
-    config.assets.precompile += %w(application.css front.css  cpanel.css )
+    config.assets.precompile += %w(application.css front.css  cpanel.css topics.css)
     config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = "zh-CN"
     config.encoding = "utf-8"

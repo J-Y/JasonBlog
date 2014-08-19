@@ -1,3 +1,4 @@
+#encoding: utf-8
 class Cpanel::TopicsController < Cpanel::ApplicationController
   # GET /topics
   # GET /topics.xml

@@ -1,3 +1,4 @@
+#encoding: utf-8
 class Cpanel::RepliesController < Cpanel::ApplicationController
   # GET /replies
   # GET /replies.xml

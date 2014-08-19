@@ -1,3 +1,4 @@
+#encoding: utf-8
 class Cpanel::UsersController < Cpanel::ApplicationController
 
 

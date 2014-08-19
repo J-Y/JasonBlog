@@ -1,9 +1,10 @@
+#encoding: utf-8
 class TopicsController < ApplicationController
   before_filter :require_user, :only => [:new,:edit,:create,:update,:destroy]
   # GET /topics
   # GET /topics.xml
   def index
-    @topics = Topic.includes(:node,:user,:last_reply_user)
+    @topics = Topic.active.includes(:node,:user,:last_reply_user)
   end
 
   # GET /topics/1

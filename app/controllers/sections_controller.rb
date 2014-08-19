@@ -1,3 +1,4 @@
+#encoding: utf-8
 class SectionsController < ApplicationController
   before_action :set_section, only: [:show, :edit, :update, :destroy]
 

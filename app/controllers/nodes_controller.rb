@@ -1,3 +1,4 @@
+#encoding: utf-8
 class NodesController < ApplicationController
   before_action :set_node, only: [:show, :edit, :update, :destroy]
 
