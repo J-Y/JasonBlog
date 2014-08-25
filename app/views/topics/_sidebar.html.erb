@@ -2,13 +2,13 @@
 	<% if ["show","new"].index(params[:action]) %>
   <div class="box">
     <h2><a href="<%= node_topics_path(@node) %>"><%= @node.name %></a></h2>
-    <% if params[:action] == "new" %>
+    <% if ["new"].index params[:action] %>
     <p class="sumamry">
       <%= @node.summary %>
     </p>
     <% end %>
     <div class="content">
-      <a href="<%= new_topic_path(:node => @node.id) %>">发布新帖</a>
+      <a class="button super" href="<%= new_topic_path(:node => @node.id) %>">发布新帖</a>
     </div>
   </div>
 <% elsif params[:action] == "index" %>
@@ -44,4 +44,15 @@
   </p>
 </div>
 <% end %>
+<% if ["new"].index(params[:action]) %>
+  <div class="box">
+    <h2>发贴说明</h2>
+    <ol>
+      <li>发布后正文排版会自动根据你在文本框里面输入的样子排列.如果里面带有 URL地址，将会自动转变为超级链接。</li>
+      <li>当然，作为一个社区，插图功能自然不会少，可以点击“上传图片”来发图。</li>
+      <li>强烈建议你在提交之前再次确认一下是否还有需要修改的地方，因为我们暂时没有给你提供后期修改的功能。</li>
+    </ol>
+  </div>
+<% end %>
+
 </div>

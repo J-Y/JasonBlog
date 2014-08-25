@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :users
   get "topics/node_:id" => "topics#node", :as => :node_topics
   get "topics/recent" => "topics#recent", :as => :recent_topics
+  get 'setting', :to => 'users#setting', :as => 'setting'
+  get 'setting/password', :to => 'users#password', :as => 'password'
   resources :topics do
     member do
       post :reply

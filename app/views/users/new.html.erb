@@ -3,17 +3,7 @@
 	<div class="box">
 		<h1>加入<%= APP_CONFIG['app_name'] %>社区</h1>
 	<%= form_for(@user) do |f| %>
-	  <% if @user.errors.any? %>
-	    <div id="error_explanation">
-	      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-	      <ul>
-	      <% @user.errors.full_messages.each do |msg| %>
-	        <li><%= msg %></li>
-	      <% end %>
-	      </ul>
-	    </div>
-	  <% end %>
+	 <%= render "shared/error_messages", :target => @user %>  
 
 	  <div class="field">
 	    <%= f.label :email %><br />
@@ -36,7 +26,7 @@
 	    <%= f.password_field :password_confirmation %>
 	  </div>
 	  <div class="actions">
-	    <button class="submit">保存</button>
+	    <button class="button submit">保存</button>
 	  </div>
 	<% end %>
 	</div>

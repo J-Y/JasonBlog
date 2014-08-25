@@ -3,12 +3,11 @@ class TopicsController < ApplicationController
   before_filter :require_user, :only => [:new,:edit,:create,:update,:destroy,:reply]
   before_filter :init_list_sidebar, :only => [:index,:recent,:cate,:search]
 
-
-
   # GET /topics
   # GET /topics.xml
   def index
     @topics = Topic.last_actived.limit(10)
+    @sections = Section.all
     set_seo_meta("社区论坛","#{APP_CONFIG['app_name']}社区,#{APP_CONFIG['app_name']}论坛,#{APP_CONFIG['app_name']}小区论坛,#{APP_CONFIG['app_name']}业主论坛")
   end
 
@@ -30,7 +29,7 @@ class TopicsController < ApplicationController
 
   def search
     @topics = Topic.search params[:s], :page => params[:page], :per_page => 50, :include => [:user, :last_reply_user]
-    set_seo_meta("搜索#{params[:s]} &raquot; 社区论坛")
+    set_seo_meta("搜索#{params[:s]} &raquo; 社区论坛")
     render :action => "index"
 
   end
@@ -45,7 +44,7 @@ class TopicsController < ApplicationController
     end
     @node = @topic.node
     @replies = @topic.replies.all
-    set_seo_meta("#{@topic.title} &raquot; 社区论坛")
+    set_seo_meta("#{@topic.title} &raquo; 社区论坛")
   end
 
   # GET /topics/new
@@ -57,6 +56,7 @@ class TopicsController < ApplicationController
     if @node.blank?
       render_404
     end
+     set_seo_meta("发帖子 &raquo; 社区论坛")
   end
 
   def reply
@@ -78,7 +78,7 @@ class TopicsController < ApplicationController
     if @topic.user_id != @current_user.id
       return render_404
     end
-
+   set_seo_meta("改帖子 &raquo; 社区论坛")
   end
 
   # POST /topics

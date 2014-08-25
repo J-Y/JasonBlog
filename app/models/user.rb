@@ -1,9 +1,10 @@
 #encoding: utf-8
 class User < ActiveRecord::Base
   acts_as_authentic
-  validates_presence_of :email, :name, :password
+  validates_presence_of :email, :name
+  validates_presence_of :password, :on => :create
   validates_uniqueness_of :email, :name
-  validates_format_of :email,  :with => /\A[\w+\-.']+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates_format_of :email,  :with => /\A[\w+\-.']+@[a-z\d\-.]+\.[a-z]+\z/i, :message => "非法的Email地址"
   has_many :topics
   has_many :replies
 
