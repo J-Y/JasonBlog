@@ -8,6 +8,8 @@ gem 'rails', '4.1.1'
 #gem 'activerecord-jdbcpostgresql-adapter', '1.3.3'
 gem 'paperclip', :git => 'https://github.com/thoughtbot/paperclip.git'
 gem 'pg'
+gem 'will_paginate', '3.0.4'
+gem 'memcache-client'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 gem "authlogic", :git => 'http://github.com/binarylogic/authlogic.git'
@@ -25,6 +27,8 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',                              group: :doc
+
+gem 'dalli', '1.1.1'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

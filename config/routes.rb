@@ -7,7 +7,14 @@ Rails.application.routes.draw do
   get 'logout', :to => 'home#logout'
   get 'register', :to => 'users#new'
   resources :users
-  resources :topics
+  get "topics/node_:id" => "topics#node", :as => :node_topics
+  get "topics/recent" => "topics#recent", :as => :recent_topics
+  resources :topics do
+    member do
+      post :reply
+    end
+  end
+
 
   namespace :cpanel do
     root :to => "home#index"

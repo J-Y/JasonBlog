@@ -1,3 +1,12 @@
+memcache_options = {
+  :c_threshold => 10_000,
+  :compression => false,
+  :debug => false,
+  :namespace => 'homeland',
+  :readonly => false,
+  :urlencode => false,
+}
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -9,6 +18,8 @@ Rails.application.configure do
   # and those relying on copy on write to perform better.
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
+
+  config.cache_store = [:mem_cache_store,"127.0.0.1:11211",memcache_options]
 
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false

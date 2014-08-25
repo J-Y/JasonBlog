@@ -1,11 +1,13 @@
 #encoding: utf-8
 class User < ActiveRecord::Base
-   acts_as_authentic
+  acts_as_authentic
   validates_presence_of :email, :name, :password
   validates_uniqueness_of :email, :name
   validates_format_of :email,  :with => /\A[\w+\-.']+@[a-z\d\-.]+\.[a-z]+\z/i
   has_many :topics
   has_many :replies
+
+  before_create :default_value_for_create
 
   has_attached_file :avatar,
   :default_style => :normal,
@@ -24,7 +26,10 @@ class User < ActiveRecord::Base
       :blocked => 2
   }
 
-#  Accessors
-  #attr_accessible :email, :password, :password_confirmation, :name, :location, :bio, :website, :avatar_file_name, :verified, :state, :qq, :last_logined_at, :tagline
+ protected
+
+  def default_value_for_create
+    sefl.state = STATE[:normal]
+  end
 
 end
