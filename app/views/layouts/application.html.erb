@@ -2,12 +2,16 @@
 <html>
 <head>
 <title><%= raw @page_title %><%= APP_CONFIG['app_name'] %></title>
-  <%= stylesheet_link_tag "application","front", :cache => "cached_front" %>
+  <%= stylesheet_link_tag "application","front","jquery.jdialog", :cache => "cached_front" %>
+	<%= yield :styles %>
   <meta name="keywords" content="<%= @meta_keywords %>" />
   <meta name="description" content="<%= @meta_description %>" />
-  <%= yield :styles %>
 
   <%= csrf_meta_tags %>
+
+	<%= javascript_include_tag "rails","jquery.jdialog", :cache => "cached_application" %>
+	<%= yield :scripts %>
+
 </head>
 <body>
 

@@ -10,6 +10,8 @@ gem 'paperclip', :git => 'https://github.com/thoughtbot/paperclip.git'
 gem 'pg'
 gem 'will_paginate', '3.0.4'
 gem 'memcache-client'
+gem 'jquery_helpers'
+gem 'protected_attributes', '1.0.7' #Not needed if all controllers use strong params
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 gem "authlogic", :git => 'http://github.com/binarylogic/authlogic.git'

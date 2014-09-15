@@ -16,5 +16,6 @@ config/config.yml
 /log/*.log
 /tmp/**/*
 public/javascripts/cached_*
+public/uploads/
 public/stylesheets/cached_*
 public/uploads/*/*/*/*/*/*

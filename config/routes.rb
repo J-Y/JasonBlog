@@ -17,6 +17,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :photos do
+    collection do
+      get :tiny_new
+    end
+  end
+
 
   namespace :cpanel do
     root :to => "home#index"
@@ -25,6 +31,7 @@ Rails.application.routes.draw do
     resources :replies
     resources :nodes
     resources :users
+    resources :photos
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

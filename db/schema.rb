@@ -33,6 +33,17 @@ ActiveRecord::Schema.define(version: 20140907070756) do
 
   add_index "nodes", ["section_id"], name: "index_nodes_on_section_id", using: :btree
 
+  create_table "photos", force: true do |t|
+    t.string   "title",                       null: false
+    t.string   "image_file_name",             null: false
+    t.integer  "image_file_size", default: 0, null: false
+    t.integer  "user_id",                     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "photos", ["user_id"], name: "index_photos_on_user_id", using: :btree
+
   create_table "replies", force: true do |t|
     t.integer  "topic_id",               null: false
     t.text     "body",                   null: false
