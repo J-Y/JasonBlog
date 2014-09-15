@@ -28,7 +28,7 @@
 							<!-- <a href="#">设置</a> -->
 							<a<%= " class='actived'" if params[:controller] == "cpanel/sections" %> href="#">相册</a>
 							<a<%= " class='actived'" if params[:controller] == "cpanel/sections" %> href="#">计划</a>
-	            <a<%= " class='actived'" if params[:controller] == "cpanel/sections" %> href="#">记事本</a>
+	            <a<%= " class='actived'" if params[:controller] == "cpanel/notes" %> href="<%= notes_path %>">记事本</a>
 	            <a<%= " class='actived'" if params[:controller] == "cpanel/nodes" %> href="#">记账</a>
 							<a href="<%= logout_path %>">登出</a>
               <%= link_to "设置", setting_path, :class => params[:controller] == "user/edit" ? 'actived' : "" %>

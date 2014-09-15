@@ -5,8 +5,9 @@ class User < ActiveRecord::Base
   validates_presence_of :password, :on => :create
   validates_uniqueness_of :email, :name
   validates_format_of :email,  :with => /\A[\w+\-.']+@[a-z\d\-.]+\.[a-z]+\z/i, :message => "非法的Email地址"
-  has_many :topics
-  has_many :replies
+  has_many :topics, :dependent => :destroy
+  has_many :replies, :dependent => :destroy
+  has_many :notes, :dependent => :destroy
 
   before_create :default_value_for_create
 

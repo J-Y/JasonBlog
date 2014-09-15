@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   root :to => "home#index"
-
+  resources :notes
   get "login", :to => 'home#login'
   post "login_create", :to => 'home#login_create'
   get 'logout', :to => 'home#logout'

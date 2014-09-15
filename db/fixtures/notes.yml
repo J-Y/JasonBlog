@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: JasonString
+  body: MyText
+  user_id: 1
+
+two:
+  title: Ruby&Rails
+  body: MyText
+  user_id: 1

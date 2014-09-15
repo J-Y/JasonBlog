@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140907070756) do
+ActiveRecord::Schema.define(version: 20140915163211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,13 +33,26 @@ ActiveRecord::Schema.define(version: 20140907070756) do
 
   add_index "nodes", ["section_id"], name: "index_nodes_on_section_id", using: :btree
 
-  create_table "photos", force: true do |t|
-    t.string   "title",                       null: false
-    t.string   "image_file_name",             null: false
-    t.integer  "image_file_size", default: 0, null: false
-    t.integer  "user_id",                     null: false
+  create_table "notes", force: true do |t|
+    t.string   "title",                    null: false
+    t.text     "body",                     null: false
+    t.integer  "user_id",                  null: false
+    t.integer  "word_count",   default: 0, null: false
+    t.integer  "changes_cout", default: 1, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  add_index "notes", ["user_id"], name: "index_notes_on_user_id", using: :btree
+
+  create_table "photos", force: true do |t|
+    t.string   "title",                                      null: false
+    t.string   "image_file_name",                            null: false
+    t.integer  "image_file_size",                default: 0, null: false
+    t.integer  "user_id",                                    null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_content_type", limit: nil
   end
 
   add_index "photos", ["user_id"], name: "index_photos_on_user_id", using: :btree
@@ -103,6 +116,7 @@ ActiveRecord::Schema.define(version: 20140907070756) do
     t.datetime "last_login_at"
     t.string   "current_login_ip"
     t.string   "last_login_ip"
+    t.integer  "notes_count",         default: 0,  null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
